@@ -3,10 +3,8 @@
 #include "screen.h"
 
 
-
-
 /**
- * @details Clear terminal screen by printing an escape sequence
+ * @details Очистить экран терминала, напечатав escape-последовательность
  */
 
 void clearScreen(){
@@ -17,12 +15,12 @@ void clearScreen(){
 
 
 /**
- * @details Set text color in terminal by printing an escape sequence
+ * @details Установим цвет текста в терминале, напечатав escape-последовательность
  */
 
 void setColor(Color c){
     char esc[5];
-    strcpy(esc, "0;00");    // default WHITE
+    strcpy(esc, "0;00");    // по умолчанию БЕЛЫЙ
     switch (c) {
         case WHITE : strcpy(esc, "0;00");
             break;
@@ -44,7 +42,7 @@ void setColor(Color c){
 
 
 /**
- * @details Set cursor position to given coordinates in the terminal window
+ * @details Установить позицию курсора для заданных координат в окне терминала
  */
 
 void locateCursor(const int row, const int col){
