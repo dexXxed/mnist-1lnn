@@ -15,6 +15,10 @@
 #include <math.h>
 #include <time.h>
 
+#include <windows.h>
+
+SetConsoleDisplayMode(GetStdHandle(STD_OUTPUT_HANDLE),CONSOLE_FULLSCREEN_MODE,0);
+
 #include "screen.h"
 #include "mnist-utils.h"
 #include "mnist-stats.h"
@@ -165,6 +169,7 @@ int main() {
     double executionTime = difftime(endTime, startTime);
     printf("\n    Завершено! Общее время выполнения: %.1f секунд(-a/-ы)\n\n", executionTime);
     
+    system("pause");
     return 0;
 }
 
