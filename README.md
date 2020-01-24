@@ -1,5 +1,6 @@
 # mnist-1lnn
-A simple 1-layer neural network to recognize handwritten single digit numbers from the MNIST image files.
+
+Простая однослойная нейронная сеть для распознавания рукописных однозначных цифр (0-9) из файлов изображений MNIST.
 
 
 ### Compile and run source code
