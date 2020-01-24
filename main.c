@@ -17,7 +17,6 @@
 
 #include <windows.h>
 
-SetConsoleDisplayMode(GetStdHandle(STD_OUTPUT_HANDLE),CONSOLE_FULLSCREEN_MODE,0);
 
 #include "screen.h"
 #include "mnist-utils.h"
@@ -145,6 +144,8 @@ void testLayer(Layer *l){
  */
 
 int main() {
+    SetConsoleDisplayMode(GetStdHandle(STD_OUTPUT_HANDLE),CONSOLE_FULLSCREEN_MODE,0);
+
 
     system("chcp 65001"); // для корректного вывода русских символов
 
