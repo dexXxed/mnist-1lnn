@@ -3,31 +3,29 @@
 Простая однослойная нейронная сеть для распознавания рукописных однозначных цифр (0-9) из файлов изображений MNIST.
 
 
-### Compile and run source code
+### Компиляция и запуск исходного кода
 
-The repository comes with a pre-configured `makefile`. You can compile the source simply by typing
+В репозитории есть сконфигурированный `makefile`. Компилируется на Linux, Windows (32, 64 бита). 
+
+Для этого введите команду:
 
 ```
 $ make
 ```
 
-in the project directory. The binary will be created inside the `/bin` folder and can be executed via
+Бинарные файлы хранятся в папке `bin`. Для запуска (Linux):
 
 ```
-$ ./bin/mnist-1lnn
+$ cd bin/
+$ ./linux-build
 ```
 
-### Documentation
+### Скриншоты
 
-The  `/doc` folder contains a doxygen configuration file. 
-When you run it with doxygen it will create updated [HTML documentation](https://rawgit.com/mmlind/mnist-1lnn/master/doc/html/index.html) in the `/doc/html` folder.
-
-### Screenshots
-
-The `/screenshots` folder contains screenshots of running the program on my 2010 MacBook Pro.
+В папке `/screenshots` имеются скриншоты запуска программы.
 
 
-### MNIST Database
+### База данных MNIST
 
-The `/data` folder contains the original MNIST database files.
+В папке `/bin/data` хранятся оригинальные файлы бфзы данных MNIST.
 
