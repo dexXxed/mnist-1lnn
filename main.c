@@ -1,25 +1,13 @@
 /**
  * @file main.c
  *
- * @mainpage MNIST 1-Layer Neural Network
+ * @mainpage MNIST Однослойная Нейронная Сеть
  *
- * @brief Main characteristics: Only 1 layer (= input layer), no hidden layer.  Feed-forward only.
- * No Sigmoid activation function. No back propagation.\n
+ * @brief Основные характеристики: только 1 слой (= входной слой), без скрытого слоя. Только прямая связь. Нет функции активации сигмоида. Обратного распространения нет.
  *
- * @details Learning is achieved simply by incrementally updating the connection weights based on the comparison
- * with the desired target output (supervised learning).\n
- *
- * Its performance (success rate) of 85% is far off the state-of-the-art techniques (surprise, surprise) 
- * but close the Yann Lecun's 88% when using only a linear classifier.
- *
- * @see [Simple 1-Layer Neural Network for MNIST Handwriting Recognition](http://mmlind.github.io/Simple_1-Layer_Neural_Network_for_MNIST_Handwriting_Recognition/)
- * @see http://yann.lecun.com/exdb/mnist/
- * @version [Github Project Page](http://github.com/mmlind/mnist-1lnn/)
- * @author [Matt Lind](http://mmlind.github.io)
- * @date July 2015
+ * @details Обучение достигается просто путем постепенного обновления весов соединений на основе сравнения с желаемым целевым выходом (контролируемое обучение).
  *
  */
- 
  
 #include <stdio.h>
 #include <stdlib.h>
@@ -36,40 +24,40 @@
 
 
 /**
- * @details Trains a layer by looping through and training its cells
- * @param l A pointer to the layer that is to be training
+ * @details Тренирует слой, проходя в цикле и тренируя его ячейки
+ * @param l Указатель на слой, который должен быть обучен
  */
 
 void trainLayer(Layer *l){
     
-    // open MNIST files
+    // открываем MNIST файлы
     FILE *imageFile, *labelFile;
     imageFile = openMNISTImageFile(MNIST_TRAINING_SET_IMAGE_FILE_NAME);
     labelFile = openMNISTLabelFile(MNIST_TRAINING_SET_LABEL_FILE_NAME);
     
     
-    // screen output for monitoring progress
+    // вывод на экран для мониторинга прогресса
     displayImageFrame(5,5);
 
     int errCount = 0;
     
-    // Loop through all images in the file
+    // Перебираем все изображения в файле
     for (int imgCount=0; imgCount<MNIST_MAX_TRAINING_IMAGES; imgCount++){
         
-        // display progress
+        // мониторим прогресс
         displayLoadingProgressTraining(imgCount,3,5);
         
-        // Reading next image and corresponding label
+        // Чтение следующего изображения и соответствующей метки
         MNIST_Image img = getImage(imageFile);
         MNIST_Label lbl = getLabel(labelFile);
         
-        // set target ouput of the number displayed in the current image (=label) to 1, all others to 0
+        // установливаем целевое значение числа, отображаемого на текущем изображении, равным 1, все остальные значения равными 0
         Vector targetOutput;
         targetOutput = getTargetOutput(lbl);
         
         displayImage(&img, 6,6);
      
-        // loop through all output cells for the given image
+        // цикл через все выходные ячейки для данного изображения
         for (int i=0; i < NUMBER_OF_OUTPUT_CELLS; i++){
             trainCell(&l->cell[i], &img, targetOutput.val[i]);
         }
@@ -77,13 +65,13 @@ void trainLayer(Layer *l){
         int predictedNum = getLayerPrediction(l);
         if (predictedNum!=lbl) errCount++;
         
-        printf("\n      Prediction: %d   Actual: %d ",predictedNum, lbl);
+        printf("\n      Предсказанное: %d   Реальное: %d ",predictedNum, lbl);
 
         displayProgress(imgCount, errCount, 3, 66);
         
     }
     
-    // Close files
+    // Закрываем файлы
     fclose(imageFile);
     fclose(labelFile);
 
@@ -93,41 +81,41 @@ void trainLayer(Layer *l){
 
 
 /**
- * @details Tests a layer by looping through and testing its cells
- * Exactly the same as TrainLayer() but WITHOUT LEARNING.
- * @param l A pointer to the layer that is to be training
+ * @details Тестирует слой, просматривая и проверяя его ячейки
+ * Точно так же, как TrainLayer(), но БЕЗ ОБУЧЕНИЯ
+ * @param l Указатель на слой, который должен быть обучен
  */
 
 void testLayer(Layer *l){
     
-    // open MNIST files
+    // открываем MNIST файлы
     FILE *imageFile, *labelFile;
     imageFile = openMNISTImageFile(MNIST_TESTING_SET_IMAGE_FILE_NAME);
     labelFile = openMNISTLabelFile(MNIST_TESTING_SET_LABEL_FILE_NAME);
     
     
-    // screen output for monitoring progress
+    // вывод на экран для мониторинга прогресса
     displayImageFrame(7,5);
     
     int errCount = 0;
     
-    // Loop through all images in the file
+    // Перебираем все изображения в файле
     for (int imgCount=0; imgCount<MNIST_MAX_TESTING_IMAGES; imgCount++){
         
-        // display progress
+        // мониторим прогресс
         displayLoadingProgressTesting(imgCount,5,5);
         
-        // Reading next image and corresponding label
+        // Чтение следующего изображения и соответствующей метки
         MNIST_Image img = getImage(imageFile);
         MNIST_Label lbl = getLabel(labelFile);
         
-        // set target ouput of the number displayed in the current image (=label) to 1, all others to 0
+        // устанавливаем целевое значение числа, отображаемого на текущем изображении, равным 1, все остальные значения равными 0
         Vector targetOutput;
         targetOutput = getTargetOutput(lbl);
         
         displayImage(&img, 8,6);
         
-        // loop through all output cells for the given image
+        // цикл через все выходные ячейки для данного изображения
         for (int i=0; i < NUMBER_OF_OUTPUT_CELLS; i++){
             testCell(&l->cell[i], &img, targetOutput.val[i]);
         }
@@ -135,36 +123,35 @@ void testLayer(Layer *l){
         int predictedNum = getLayerPrediction(l);
         if (predictedNum!=lbl) errCount++;
         
-        printf("\n      Prediction: %d   Actual: %d ",predictedNum, lbl);
+        printf("\n      Предсказанное: %d   Реальное: %d ",predictedNum, lbl);
         
         displayProgress(imgCount, errCount, 5, 66);
         
     }
     
-    // Close files
+    // Закрываем файлы
     fclose(imageFile);
     fclose(labelFile);
     
 }
 
 
-
-
-
 /**
- * @details Main function to run MNIST-1LNN
+ * @details Функция main()
  */
 
-int main(int argc, const char * argv[]) {
-    
-    // remember the time in order to calculate processing time at the end
+int main() {
+
+    system("chcp 65001"); // для корректного вывода русских символов
+
+    // запомним текущее время, чтобы рассчитать время обработки в конце
     time_t startTime = time(NULL);
     
-    // clear screen of terminal window
+    // очистим окно терминального вывода
     clearScreen();
-    printf("    MNIST-1LNN: a simple 1-layer neural network processing the MNIST handwriting images\n");
+    printf("    Простая однослойная нейронная сеть для распознавания рукописных однозначных цифр (0-9) из файлов изображений MNIST\n");
     
-    // initialize all connection weights to random values between 0 and 1
+    // инициализируем все веса подключений случайными значениями от 0 до 1
     Layer outputLayer;
     initLayer(&outputLayer);
     trainLayer(&outputLayer);
@@ -173,10 +160,10 @@ int main(int argc, const char * argv[]) {
 
     locateCursor(38, 5);
     
-    // Calculate and print the program's total execution time
+    // Рассчитать и распечатать общее время выполнения программы
     time_t endTime = time(NULL);
     double executionTime = difftime(endTime, startTime);
-    printf("\n    DONE! Total execution time: %.1f sec\n\n",executionTime);
+    printf("\n    Завершено! Общее время выполнения: %.1f секунд(-a/-ы)\n\n", executionTime);
     
     return 0;
 }
