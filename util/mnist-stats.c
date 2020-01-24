@@ -5,10 +5,8 @@
 #include "mnist-stats.h"
 
 
-
-
 /**
- * @details Outputs a 28x28 text frame at a defined screen position
+ * @details Выводит текстовый фрейм 28x28 в определенной позиции экрана
  */
 
 void displayImageFrame(int row, int col){
@@ -28,10 +26,8 @@ void displayImageFrame(int row, int col){
 }
 
 
-
-
 /**
- * @details Outputs a 28x28 MNIST image as charachters ("."s and "X"s)
+ * @details Выводит изображение MNIST размером 28x28 в виде символов ("." И "X")
  */
 
 void displayImage(MNIST_Image *img, int row, int col){
@@ -55,19 +51,17 @@ void displayImage(MNIST_Image *img, int row, int col){
 }
 
 
-
-
 /**
- * @details Outputs reading progress while processing MNIST training images
+ * @details Выводит прогресс чтения при обработке изображений для обучения MNIST
  */
 
 void displayLoadingProgressTraining(int imgCount, int y, int x){
     
-    float progress = (float)(imgCount+1)/(float)(MNIST_MAX_TRAINING_IMAGES)*100;
+    float progress = (float)(imgCount+1) / (float)(MNIST_MAX_TRAINING_IMAGES) * 100;
     
     if (x!=0 && y!=0) locateCursor(y, x);
     
-    printf("1: TRAINING: Reading image No. %5d of %5d images [%d%%]",(imgCount+1),MNIST_MAX_TRAINING_IMAGES,(int)progress);
+    printf("1: Обучение: Чтение изображения No. %5d из %5d изображений [%d%%]",(imgCount+1),MNIST_MAX_TRAINING_IMAGES,(int)progress);
     
 }
 
@@ -75,7 +69,7 @@ void displayLoadingProgressTraining(int imgCount, int y, int x){
 
 
 /**
- * @details Outputs reading progress while processing MNIST testing images
+ * @details Выводит прогресс чтения при обработке изображений тестирования MNIST
  */
 
 void displayLoadingProgressTesting(int imgCount, int y, int x){
@@ -84,7 +78,7 @@ void displayLoadingProgressTesting(int imgCount, int y, int x){
     
     if (x!=0 && y!=0) locateCursor(y, x);
     
-    printf("2: TESTING:  Reading image No. %5d of %5d images [%d%%]\n                                  ",(imgCount+1),MNIST_MAX_TESTING_IMAGES,(int)progress);
+    printf("2: Тестирование:  Чтение изображения No. %5d из %5d изображений [%d%%]\n                                  ",(imgCount+1),MNIST_MAX_TESTING_IMAGES,(int)progress);
     
 }
 
@@ -92,16 +86,16 @@ void displayLoadingProgressTesting(int imgCount, int y, int x){
 
 
 /**
- * @details Outputs image recognition progress and error count
+ * @details Выводит прогресс распознавания изображения и количество ошибок
  */
 
 void displayProgress(int imgCount, int errCount, int y, int x){
     
-    double successRate = 1 - ((double)errCount/(double)(imgCount+1));
+    double successRate = 1 - ((double)errCount / (double)(imgCount+1));
     
     if (x!=0 && y!=0) locateCursor(y, x);
     
-    printf("Result: Correct=%5d  Incorrect=%5d  Success-Rate=%5.2f%% \n",imgCount+1-errCount, errCount, successRate*100);
+    printf("Результат: Правильно=%5d  Неправильно=%5d  Успешность=%5.2f%% \n",imgCount+1-errCount, errCount, successRate*100);
     
     
 }

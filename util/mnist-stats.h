@@ -1,12 +1,10 @@
 #include <stdio.h>
 
 
-
-
 /**
- * @brief Outputs a 28x28 text frame at a defined screen position
- * @param row Row of terminal screen
- * @param col Column of terminal screen
+ * @brief Выводит текстовый фрейм 28x28 в определенной позиции экрана
+ * @param row Ряд экрана терминала
+ * @param col Колонка экрана терминала
  */
 
 void displayImageFrame(int y, int x);
@@ -15,10 +13,10 @@ void displayImageFrame(int y, int x);
 
 
 /**
- * @brief Outputs a 28x28 MNIST image as charachters ("."s and "X"s)
- * @param img Pointer to a MNIST image
- * @param row Row of terminal screen
- * @param col Column of terminal screen
+ * @brief Выводит изображение MNIST размером 28x28 в виде символов ("." И "X")
+ * @param img Указатель на MNIST изображение
+ * @param row Ряд экрана терминала
+ * @param col Колонка экрана терминала
  */
 
 void displayImage(MNIST_Image *img, int y, int x);
@@ -27,10 +25,10 @@ void displayImage(MNIST_Image *img, int y, int x);
 
 
 /**
- * @brief Outputs reading progress while processing MNIST training images
- * @param imgCount Number of images already read from the MNIST file
- * @param y Row of terminal screen
- * @param x Column of terminal screen
+ * @brief Выводит прогресс чтения при обработке изображений для обучения MNIST
+ * @param imgCount Количество изображений, уже прочитанных из файла MNIST
+ * @param y Ряд экрана терминала
+ * @param x Колонка экрана терминала
  */
 
 void displayLoadingProgressTraining(int imgCount, int y, int x);
@@ -39,10 +37,10 @@ void displayLoadingProgressTraining(int imgCount, int y, int x);
 
 
 /**
- * @brief Outputs reading progress while processing MNIST testing images
- * @param imgCount Number of images already read from the MNIST file
- * @param y Row of terminal screen
- * @param x Column of terminal screen
+ * @brief Выводит прогресс чтения при обработке изображений тестирования MNIST
+ * @param imgCount Количество изображений, уже прочитанных из файла MNIST
+ * @param y Ряд экрана терминала
+ * @param x Колонка экрана терминала
  */
 
 void displayLoadingProgressTesting(int imgCount, int y, int x);
@@ -51,11 +49,11 @@ void displayLoadingProgressTesting(int imgCount, int y, int x);
 
 
 /**
- * @brief Outputs image recognition progress and error count
- * @param imgCount Number of images already processed
- * @param errCount Number of images that were NOT correctly identified
- * @param y Row of terminal screen
- * @param x Column of terminal screen
+ * @brief Выводит прогресс распознавания изображения и количество ошибок
+ * @param imgCount Количество уже обработанных изображений
+ * @param errCount Количество изображений, которые НЕ были правильно определены
+ * @param y Ряд экрана терминала
+ * @param x Колонка экрана терминала
  */
 
 void displayProgress(int imgCount, int errCount, int y, int x);
