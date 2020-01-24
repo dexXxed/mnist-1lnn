@@ -2,18 +2,18 @@
 #include <stdio.h>
 
 
-#define MNIST_TRAINING_SET_IMAGE_FILE_NAME "data/train-images-idx3-ubyte" ///< MNIST image training file in the data folder
-#define MNIST_TRAINING_SET_LABEL_FILE_NAME "data/train-labels-idx1-ubyte" ///< MNIST label training file in the data folder
+#define MNIST_TRAINING_SET_IMAGE_FILE_NAME "data/train-images-idx3-ubyte" ///< Учебный файл изображений MNIST в папке data/
+#define MNIST_TRAINING_SET_LABEL_FILE_NAME "data/train-labels-idx1-ubyte" ///< Учебный файл метки MNIST в папке data/
 
-#define MNIST_TESTING_SET_IMAGE_FILE_NAME "data/t10k-images-idx3-ubyte"  ///< MNIST image testing file in the data folder
-#define MNIST_TESTING_SET_LABEL_FILE_NAME "data/t10k-labels-idx1-ubyte"  ///< MNIST label testing file in the data folder
+#define MNIST_TESTING_SET_IMAGE_FILE_NAME "data/t10k-images-idx3-ubyte"  ///< Файл тестирования изображения MNIST в папке data/
+#define MNIST_TESTING_SET_LABEL_FILE_NAME "data/t10k-labels-idx1-ubyte"  ///< Файл тестирования метки MNIST в папке data/
 
 
 
-#define MNIST_MAX_TRAINING_IMAGES 60000                     ///< number of images+labels in the TRAIN file/s
-#define MNIST_MAX_TESTING_IMAGES 10000                      ///< number of images+labels in the TEST file/s
-#define MNIST_IMG_WIDTH 28                                  ///< image width in pixel
-#define MNIST_IMG_HEIGHT 28                                 ///< image height in pixel
+#define MNIST_MAX_TRAINING_IMAGES 60000                     ///< количество изображений+меток в файле TRAIN 
+#define MNIST_MAX_TESTING_IMAGES 10000                      ///< количество изображений+меток в файле TEST 
+#define MNIST_IMG_WIDTH 28                                  ///< ширина изображения в пикселях
+#define MNIST_IMG_HEIGHT 28                                 ///< высота изображения в пикселях
 
 
 
@@ -26,8 +26,7 @@ typedef uint8_t MNIST_Label;
 
 
 /**
- * @brief Data block defining a MNIST image
- * @see http://yann.lecun.com/exdb/mnist/ for details
+ * @brief Блок данных, определяющий изображение MNIST
  */
 struct MNIST_Image{
     uint8_t pixel[28*28];
@@ -37,11 +36,7 @@ struct MNIST_Image{
 
 
 /**
- * @brief Data block defining a MNIST image file header
- * @attention The fields in this structure are not used.
- * What matters is their byte size to move the file pointer
- * to the first image.
- * @see http://yann.lecun.com/exdb/mnist/ for details
+ * @brief Блок данных, определяющий заголовок файла изображения MNIST
  */
 
 struct MNIST_ImageFileHeader{
@@ -55,11 +50,7 @@ struct MNIST_ImageFileHeader{
 
 
 /**
- * @brief Data block defining a MNIST label file header
- * @attention The fields in this structure are not used.
- * What matters is their byte size to move the file pointer
- * to the first label.
- * @see http://yann.lecun.com/exdb/mnist/ for details
+ * @brief Блок данных, определяющий заголовок файла метки MNIST
  */
 
 struct MNIST_LabelFileHeader{
@@ -71,8 +62,7 @@ struct MNIST_LabelFileHeader{
 
 
 /**
- * @brief Read MNIST IMAGE file header
- * @see http://yann.lecun.com/exdb/mnist/ for definition details
+ * @brief Прочитать заголовок файла MNIST IMAGE
  */
 
 FILE *openMNISTImageFile(char *fileName);
@@ -81,8 +71,7 @@ FILE *openMNISTImageFile(char *fileName);
 
 
 /**
- * @brief Read MNIST label file header
- * @see http://yann.lecun.com/exdb/mnist/ for definition details
+ * @brief Прочитать заголовок файла метки MNIST
  */
 
 FILE *openMNISTLabelFile(char *fileName);
@@ -90,7 +79,7 @@ FILE *openMNISTLabelFile(char *fileName);
 
 
 /**
- * @brief Returns the next image in given MNIST image file
+ * @brief Возвращает следующее изображение в данном файле изображения MNIST
  */
 
 MNIST_Image getImage(FILE *imageFile);
@@ -99,7 +88,7 @@ MNIST_Image getImage(FILE *imageFile);
 
 
 /**
- * @brief Returns the next label in given MNIST label file
+ * @brief Возвращает следующую метку в данном файле меток MNIST
  */
 
 MNIST_Label getLabel(FILE *labelFile);
