@@ -1,10 +1,3 @@
-/**
- * @file 1lnn.c
- * @brief Machine learning functionality for a 1-layer neural network
- * @author Matt Lind
- * @date July 2015
- */
-
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
@@ -16,7 +9,7 @@
 
 
 /**
- * @details Returns an output vector with targetIndex set to 1, all others to 0
+ * @details Возвращает выходной вектор с targetIndex, установленным в 1, все остальные в 0
  */
 
 Vector getTargetOutput(int targetIndex){
@@ -31,10 +24,10 @@ Vector getTargetOutput(int targetIndex){
 
 
 /**
- * @details Initialize layer by setting all weights to random values [0-1]
- * @attention It actually makes no difference whether the weights are
- * initialized to a constant (e.g. 0.5) or to a random number.
- * The result (85% success rate) will not change significantly.
+ * @details Инициализируем слой, установив все веса в случайные значения [0-1]
+ * @attention На самом деле не имеет значения, инициализированы ли веса постоянной величиной 
+ * (например, 0,5) или случайным числом. 
+ * Результат (85% точности) существенно не изменится.
  */
 
 void initLayer(Layer *l){
@@ -55,8 +48,8 @@ void initLayer(Layer *l){
 
 
 /**
- * @details The output prediction is derived by simply sorting all output values
- * and using the index (=0-9 number) of the highest value as the prediction.
+ * @details Прогноз получается путем простой сортировки всех выходных значений 
+ * и использования индекса (число 0-9) самого высокого значения в прогнозе.
  */
 
 int getLayerPrediction(Layer *l){
@@ -80,10 +73,11 @@ int getLayerPrediction(Layer *l){
 
 
 /**
- * @details Creates an input vector of length NUMBER_OF_INPUT_CELLS
- * of a given MNIST image, setting input vector cells to [0,1]
- * based on the pixels of the image.
- * Scalar pixel intensity [=grey-scale] is ignored, only 0 or 1 [=black-white].
+ * @details Создает входной вектор длиной NUMBER_OF_INPUT_CELLS 
+ * для данного изображения MNIST, устанавливая ячейки входного вектора в [0,1],
+ * ссылаясь на пиксели изображения. 
+ * Скалярная интенсивность пикселей (оттенки серого) игнорируются, 
+ * только 0 или 1 (черный или белый цвет).
  */
 
 void setCellInput(Cell *c, MNIST_Image *img){
@@ -97,8 +91,8 @@ void setCellInput(Cell *c, MNIST_Image *img){
 
 
 /**
- * @details Calculates a cell's output by suming all input-weight-products
- * and normalizes to [0-1].
+ * @details Вычисляет выход ячейки путем 
+ * суммирования всех входных весовых произведений и нормализации (0-1).
  */
 
 void calcCellOutput(Cell *c){
@@ -109,14 +103,14 @@ void calcCellOutput(Cell *c){
         c->output += c->input[i] * c->weight[i];
     }
     
-    c->output /= NUMBER_OF_INPUT_CELLS;             // normalize output (0-1)
+    c->output /= NUMBER_OF_INPUT_CELLS;             // нормализация выхода (0-1)
 }
 
 
 
 
 /**
- * @details Returns the difference between a target value and the cell's ouput
+ * @details Возвращает разницу между целевым значением и выходом ячейки
  */
 
 double getCellError(Cell *c, int target){
@@ -130,7 +124,7 @@ double getCellError(Cell *c, int target){
 
 
 /**
- * @details Updates a cell's weights based on given error and LEARNING_RATE
+ * @details Обновляет вес ячейки на основе указанной ошибки и LEARNING_RATE
  */
 
 void updateCellWeights(Cell *c, double err){
@@ -144,8 +138,8 @@ void updateCellWeights(Cell *c, double err){
 
 
 /**
- * @details Performs the training algorithm:
- * feeding input, calculate output, calculate error, update weights)
+ * @details Выполняет алгоритм обучения: 
+ * ввод данных, вычисление выхода, вычисление ошибки, обновление весов
  */
 
 void trainCell(Cell *c, MNIST_Image *img, int target){
@@ -153,7 +147,7 @@ void trainCell(Cell *c, MNIST_Image *img, int target){
     setCellInput(c, img);
     calcCellOutput(c);
     
-    // learning (by updating the weights)
+    // обучение (осущ. обновлением весов)
     double err = getCellError(c, target);
     updateCellWeights(c, err);
 }
@@ -162,8 +156,8 @@ void trainCell(Cell *c, MNIST_Image *img, int target){
 
 
 /**
- * @details Performs the testing of the trained network
- * Same as training a cell, but without updating weights (learning)
+ * @details Проводит тестирование обученной сети
+ * То же самое, что тренировка ячейки, но без обновления весов (обучения)
  */
 
 void testCell(Cell *c, MNIST_Image *img, int target){
