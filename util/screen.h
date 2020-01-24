@@ -6,7 +6,7 @@ static const Color DEFAULT_TEXT_COLOR = WHITE;
 
 
 /**
- * @brief Clear terminal screen by printing an escape sequence
+ * @brief Очистим экран терминала, напечатав escape-последовательность
  */
 
 void clearScreen(void);
@@ -15,7 +15,7 @@ void clearScreen(void);
 
 
 /**
- * @brief Set text color in terminal by printing an escape sequence
+ * @brief Установим цвет текста в терминале, напечатав escape-последовательность
  */
 
 void setColor(Color c);
@@ -24,9 +24,9 @@ void setColor(Color c);
 
 
 /**
- * @brief Set cursor position to given coordinates in the terminal window
- * @param row Row number in terminal screen
- * @param col Column number in terminal screen
+ * @brief Установить позицию курсора для заданных координат в окне терминала
+ * @param row Номер строки на экране терминала
+ * @param col Номер столбца на экране терминала
  */
 
 void locateCursor(const int row, const int col);
