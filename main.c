@@ -35,9 +35,6 @@
 
 
 
-
-
-
 /**
  * @details Trains a layer by looping through and training its cells
  * @param l A pointer to the layer that is to be training

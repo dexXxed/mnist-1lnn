@@ -1,10 +1,3 @@
-/**
- * @file screen.c
- * @brief Utitlies for advanced input and output to terminal screen
- * @author Matt Lind
- * @date July 2015
- */
-
 #include <stdio.h>
 #include <string.h>
 #include "screen.h"

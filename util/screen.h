@@ -1,10 +1,3 @@
-/**
- * @file screen.h
- * @brief Utitlies for advanced input and output to terminal screen
- * @author Matt Lind
- * @date July 2015
- */
-
 typedef enum Color {WHITE, RED, GREEN, YELLOW, BLUE, CYAN} Color;
 
 static const Color DEFAULT_TEXT_COLOR = WHITE;

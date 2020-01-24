@@ -1,10 +1,3 @@
-/**
- * @file mnist-stats.h
- * @brief Utitlies for displaying processing details in the terminal
- * @author Matt Lind
- * @date July 2015
- */
-
 #include <stdio.h>
 
 

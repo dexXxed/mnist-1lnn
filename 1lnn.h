@@ -1,17 +1,9 @@
-/**
- * @file 1lnn.h
- * @brief Machine learning functionality for a 1-layer neural network
- * @author Matt Lind
- * @date July 2015
- */
-
-
 #include <stdio.h>
 
-#define NUMBER_OF_INPUT_CELLS 784   ///< use 28*28 input cells (= number of pixels per MNIST image)
-#define NUMBER_OF_OUTPUT_CELLS 10   ///< use 10 output cells to model 10 digits (0-9)
+#define NUMBER_OF_INPUT_CELLS 784   ///< используем 28*28 входных ячеек (= кол-ву пикселей на изображении MNIST)
+#define NUMBER_OF_OUTPUT_CELLS 10   ///< используем 10 выходных ячеек для моделирования 10 цифр (0-9)
 
-#define LEARNING_RATE 0.05          ///< Incremental increase for changing connection weights
+#define LEARNING_RATE 0.05          ///< Постепенное увеличение для изменения весов 
 
 
 
@@ -23,7 +15,7 @@ typedef struct Vector Vector;
 
 
 /**
- * @brief Core unit of the neural network (neuron and synapses)
+ * @brief Основная единица нейронной сети (нейрон и синапсы)
  */
 
 struct Cell{
@@ -37,7 +29,7 @@ struct Cell{
 
 
 /**
- * @brief The single (output) layer of this network (a layer is number cells)
+ * @brief Единственный (выходной) слой этой сети (слой с числом ячеек)
  */
 
 struct Layer{
@@ -48,7 +40,7 @@ struct Layer{
 
 
 /**
- * @brief Data structure containing defined number of integer values (the output vector contains values for 0-9)
+ * @brief Структура данных, содержащая определенное количество целочисленных значений (выходной вектор содержит значения от 0 до 9)
  */
 
 struct Vector{
@@ -59,8 +51,8 @@ struct Vector{
 
 
 /**
- * @brief Returns an output vector with targetIndex set to 1, all others to 0
- * @param targetIndex Index of the output that is to be set to 1
+ * @brief Возвращает выходной вектор с targetIndex, установленным в 1, все остальные в 0
+ * @param targetIndex Индекс выхода, который должен быть установлен в 1
  */
 
 Vector getTargetOutput(int targetIndex);
@@ -69,8 +61,8 @@ Vector getTargetOutput(int targetIndex);
 
 
 /**
- * @brief Initialize layer by setting all weights to random values [0-1]
- * @param l A pointer to a NN layer
+ * @brief Инициализируем слой, установив все веса в случайные значения [0-1]
+ * @param l Указатель на слой нейронной сети
  */
 
 void initLayer(Layer *l);
@@ -79,8 +71,8 @@ void initLayer(Layer *l);
 
 
 /**
- * @brief Returns the index of the cell with the hightest output
- * @param l A pointer to a NN layer
+ * @brief Возвращает индекс ячейки с наибольшим выходом
+ * @param l Указатель на слой нейронной сети
  */
 
 int getLayerPrediction(Layer *l);
@@ -89,9 +81,9 @@ int getLayerPrediction(Layer *l);
 
 
 /**
- * @brief Sets a cell's input according to the pixels of a given MNIST image
- * @param c A pointer to a cell
- * @param img A pointer to an MNIST image
+ * @brief Устанавливаем вход ячейки в соответствии с пикселями данного изображения MNIST
+ * @param c Указатель на ячейку
+ * @param img Указатель на MNIST картинку
  */
 
 void setCellInput(Cell *c, MNIST_Image *img);
@@ -100,8 +92,8 @@ void setCellInput(Cell *c, MNIST_Image *img);
 
 
 /**
- * @brief Calculates a cell's output by suming all input-weight-products
- * @param c A cell of a NN layer
+ * @brief Вычисляет выход ячейки путем суммирования всех входных произведений весов 
+ * @param c Ячейка слоя нейронной сети
  */
 
 void calcCellOutput(Cell *c);
@@ -110,9 +102,9 @@ void calcCellOutput(Cell *c);
 
 
 /**
- * @brief Returns the difference between a target value and the cell's ouput
- * @param c The cell whose output is to be compared
- * @param target The desired value (= correct answer in supervised learning)
+ * @brief Возвращает разницу между целевым значением и выходом ячейки
+ * @param c Ячейка, чей вывод сравнивается
+ * @param target Желаемое значение (правильный ответ в контролируемом обучении)
  */
 
 double getCellError(Cell *c, int target);
@@ -121,9 +113,9 @@ double getCellError(Cell *c, int target);
 
 
 /**
- * @brief Updates a cell's weights based on given error and LEARNING_RATE
- * @param c The cell whose weights are to be updated.
- * @param err The error (difference between desired output and actual output
+ * @brief Обновляет вес ячейки на основе указанной ошибки и LEARNING_RATE
+ * @param c Ячейка, вес которой должен быть обновлен
+ * @param err Ошибка (разница между желаемым выходом и фактическим выходом)
  */
 
 void updateCellWeights(Cell *c, double err);
@@ -132,10 +124,10 @@ void updateCellWeights(Cell *c, double err);
 
 
 /**
- * @brief Performs the training algorithm
- * @param c Pointer to the cell that is to be trained
- * @param img Pointer to the image that is to be processed
- * @param target Desired output value
+ * @brief Выполняет алгоритм обучения
+ * @param c Указатель на ячейку, которая должна быть обучена
+ * @param img Указатель на изображение, которое должно быть обработано
+ * @param target Желаемое выходное значение
  */
 
 void trainCell(Cell *c, MNIST_Image *img, int target);
@@ -144,10 +136,10 @@ void trainCell(Cell *c, MNIST_Image *img, int target);
 
 
 /**
- * @brief Performs the testing of the trained network
- * @param c Pointer to the cell that is to be trained
- * @param img Pointer to the image that is to be processed
- * @param target Desired output value
+ * @brief Проводит тестирование обученной сети
+ * @param c Указатель на ячейку, которая должна быть обучена
+ * @param img Указатель на изображение, которое должно быть обработано
+ * @param target Желаемое выходное значение
  */
 
 

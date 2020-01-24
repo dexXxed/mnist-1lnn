@@ -1,11 +1,3 @@
-/**
- * @file mnist-utils.c
- * @brief Utitlies for handling the MNIST files
- * @see http://yann.lecun.com/exdb/mnist/
- * @author Matt Lind
- * @date July 2015
- */
-
 #include <stdio.h>
 #include <stdlib.h>
 
