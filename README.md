@@ -17,7 +17,7 @@ $ make
 
 ```
 $ cd bin/
-$ ./windows-x64-build.exe
+$ ./windows-x64-build.exe # or ./windows-x32-build.exe
 ```
 
 ### Скриншоты
